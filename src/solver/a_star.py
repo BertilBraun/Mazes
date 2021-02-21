@@ -1,35 +1,12 @@
-from PIL import Image
-import numpy as np
-
 from src.point import Point
-from src.solver.node import Node
 from src.solver.path import Path
+from src.solver.solver import Solver
 
 
-class AStar:
+class AStar(Solver):
 
     def __init__(self, path) -> None:
-
-        array = np.asarray(Image.open(path))
-
-        self.nodes = []
-        self.h = array.shape[0]
-        self.w = array.shape[1]
-
-        for y in range(self.h):
-            for x in range(self.w):
-                self.nodes.append(Node(y, x, array[y, x] == 0))
-
-        for y in range(self.h):
-            for x in range(self.w):
-                if y > 0:
-                    self[x, y].neighbours.append(self[x, y - 1])
-                if y < self.h - 1:
-                    self[x, y].neighbours.append(self[x, y + 1])
-                if x > 0:
-                    self[x, y].neighbours.append(self[x - 1, y])
-                if x < self.w - 1:
-                    self[x, y].neighbours.append(self[x + 1, y])
+        super().__init__(path)
 
     def solve(self, start: Point, end: Point) -> Path:
         start_node = self[start.x, start.y]
@@ -37,7 +14,8 @@ class AStar:
 
         for y in range(self.h):
             for x in range(self.w):
-                self[x, y].reset()
+                if self[x, y] is not None:
+                    self[x, y].reset()
 
         start_node.local_goal = 0
         start_node.global_goal = start_node.heuristic(end_node)
@@ -62,11 +40,7 @@ class AStar:
 
                     node.global_goal = node.local_goal + node.heuristic(end_node)
 
-                    if node not in stack and not node.obstacle:
+                    if node not in stack:
                         stack.append(node)
 
-    def __getitem__(self, item: tuple) -> Node:
-        return self.nodes[self.idx(item[0], item[1])]
-
-    def idx(self, x_idx, y_idx) -> int:
-        return x_idx + y_idx * self.w
+        raise Exception("Finished A* Algorithm without finding the end Node!")

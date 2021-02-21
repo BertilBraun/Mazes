@@ -2,10 +2,9 @@ from src.point import Point
 
 
 class Node:
-    def __init__(self, x, y, obstacle=False) -> None:
+    def __init__(self, x, y) -> None:
         self.pos = Point(x, y)
 
-        self.obstacle = obstacle
         self.global_goal = float("inf")
         self.local_goal = float("inf")
 
@@ -23,6 +22,6 @@ class Node:
         self.local_goal = float("inf")
 
     def __repr__(self) -> str:
-        return self.pos.__repr__() + " " + self.obstacle.__repr__()
+        return self.pos.__repr__()
 
 

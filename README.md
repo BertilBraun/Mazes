@@ -13,6 +13,7 @@ Implemented as it can be found [here](https://en.wikipedia.org/wiki/Maze_generat
 ## Path Finding
 
 Implemented path finding algorithms to find the shortest path in a generated Maze.
+The Graph Layout gets optimized by combining straight edges to one before running the Path finding Algorithm.
 
 Implementation contain:
 
@@ -23,4 +24,4 @@ Implementation contain:
 ## Future
 
 - Implement the basic [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Pathfinding#Dijkstra's_algorithm)
-- Optimize Graph layout by combining straight edges to one
+- Optimize Graph layout by including edge length in graph

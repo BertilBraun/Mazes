@@ -13,11 +13,11 @@ class Maze:
         self.h = h
         self.grid = [0] * (w * h)
 
-    def generate(self, sx, sy) -> None:
+    def generate(self, start: Point) -> None:
         import random
 
-        stack = [Point(sx, sy)]
-        self[(sx, sy)] = Maze.VISITED
+        stack = [start]
+        self[start.x, start.y] = Maze.VISITED
 
         def offset(ox, oy) -> tuple:
             return stack[-1].x + ox, stack[-1].y + oy

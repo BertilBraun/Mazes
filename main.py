@@ -1,4 +1,3 @@
-import random
 from src.maze import Maze
 from src.point import Point
 from src.solver.a_star import AStar
@@ -8,11 +7,8 @@ def main():
     w = 100
     h = 100
 
-    sx = random.randint(0, w - 1)
-    sy = random.randint(0, h - 1)
-
     maze = Maze(w, h)
-    maze.generate(sx, sy)
+    maze.generate(Point.random(w, h))
     # maze.print()
     maze.save('Maze.png')
 
