@@ -5,16 +5,22 @@ Repository for playing with mazes in python
 
 ### Iterative implementation
 The depth-first search algorithm of maze generation is implemented using backtracking.
+
 Implemented as it can be found [here](https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_implementation).
 
-![Image](https://raw.githubusercontent.com/BertilBraun/Mazes/main/Maze.png)
+![Maze](https://raw.githubusercontent.com/BertilBraun/Mazes/main/img/Maze.png)
 
-## Future
+## Path Finding
 
-Implement path finding algorithms to find the shortest path in a generated Maze.
+Implemented path finding algorithms to find the shortest path in a generated Maze.
 
 Implementation contain:
 
-- [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Pathfinding#Dijkstra's_algorithm)
 - [A* algorithm](https://en.wikipedia.org/wiki/Pathfinding#A*_algorithm)
 
+![Maze Path](https://raw.githubusercontent.com/BertilBraun/Mazes/main/img/MazePath.png)
+
+## Future
+
+- Implement the basic [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Pathfinding#Dijkstra's_algorithm)
+- Optimize Graph layout by combining straight edges to one
