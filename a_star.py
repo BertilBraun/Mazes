@@ -1,6 +1,6 @@
-from src.point import Point
-from src.solver.path import Path
-from src.solver.solver import Solver
+from point import Point
+from path import Path
+from solver import Solver
 
 
 class AStar(Solver):

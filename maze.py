@@ -1,4 +1,4 @@
-from src.point import Point
+from point import Point
 
 
 class Maze:
@@ -66,11 +66,9 @@ class Maze:
         return x_idx + y_idx * self.w
 
     def get_repr(self):
-        import numpy as np
-
         data = []
         line = [0] * (self.w * 2 + 1)
-        data.append(np.array(line))
+        data.append(line)
         for y in range(self.h):
             line = [0]
             for x in range(self.w):
@@ -81,7 +79,7 @@ class Maze:
                     line.append(255)
                     line.append(0)
 
-            data.append(np.array(line))
+            data.append(line)
             line = [0]
             for x in range(self.w):
                 if self.grid[self.idx(x, y)] & Maze.PATH_S:
@@ -91,22 +89,6 @@ class Maze:
                     line.append(0)
                     line.append(0)
 
-            data.append(np.array(line))
+            data.append(line)
 
         return data
-
-    def print(self) -> None:
-        for line in self.get_repr():
-            for item in line:
-                if item == 0:
-                    print('#', end='')
-                else:
-                    print(' ', end='')
-            print()
-
-    def save(self, path) -> None:
-        import numpy as np
-        from PIL import Image
-
-        im = Image.fromarray(np.uint8(np.array(self.get_repr())))
-        im.save(path)

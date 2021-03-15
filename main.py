@@ -1,23 +1,20 @@
-from src.maze import Maze
-from src.point import Point
-from src.solver.a_star import AStar
+from maze import Maze
+from point import Point
+from a_star import AStar
 
+w = 100
+h = 100
 
-def main():
-    w = 100
-    h = 100
+print('Started')
 
-    maze = Maze(w, h)
-    maze.generate(Point.random(w, h))
-    # maze.print()
-    maze.save('Maze.png')
+maze = Maze(w, h)
+maze.generate(Point.random(w, h))
 
-    a_star = AStar('Maze.png')
-    path = a_star.solve(Point(1, 1), Point(w * 2 - 1, h * 2 - 1))
+# TODO input these points
+start = Point(1, 1)
+end = Point(w * 2 - 1, h * 2 - 1)
 
-    # path.print()
-    path.save('Maze.png', 'MazePath.png')
+path = AStar(maze).solve(start, end)
 
-
-if __name__ == '__main__':
-    main()
+# path.print()
+path.draw(maze)

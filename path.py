@@ -1,5 +1,8 @@
-from src.point import Point
-from src.solver.node import Node
+from point import Point
+from node import Node
+from maze import Maze
+
+from browser import document, html
 
 
 class Path:
@@ -15,8 +18,7 @@ class Path:
         for node in self.path:
             print(node)
 
-    def save(self, base_path: str, save_to_path: str) -> None:
-        from PIL import Image
+    def draw(self, maze: Maze) -> None:
 
         points = []
 
@@ -40,11 +42,27 @@ class Path:
             r = int((i / length) * 240)
             colors.append((r, 0, 240 - r))
 
-        img = Image.open(base_path)
-        rgb_img = Image.new("RGBA", img.size)
-        rgb_img.paste(img)
+        array = maze.get_repr()
+
+        w = len(array)
+        h = len(array[0])
+
+        scale = 5
+
+        canvas = html.CANVAS(width=w * scale, height=h * scale)
+        ctx = canvas.getContext("2d")
+
+        for i in range(h):
+            for j in range(w):
+                if array[j][i]:
+                    ctx.fillStyle = "rgb(255,255,255)"
+                else:
+                    ctx.fillStyle = "rgb(0,0,0)"
+                ctx.fillRect(i * scale, j * scale, 1 * scale, 1 * scale)
 
         for i, point in enumerate(points):
-            rgb_img.putpixel((point.x, point.y), colors[i])
+            r, g, b = colors[i]
+            ctx.fillStyle = "rgb("+str(r)+","+str(g)+","+str(b)+")"
+            ctx.fillRect(point.x * scale, point.y * scale, 1 * scale, 1 * scale)
 
-        rgb_img.save(save_to_path)
+        document["canvas"] <= canvas

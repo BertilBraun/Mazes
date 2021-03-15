@@ -1,4 +1,4 @@
-from src.point import Point
+from point import Point
 
 
 class Node:
