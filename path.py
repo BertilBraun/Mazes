@@ -2,8 +2,6 @@ from point import Point
 from node import Node
 from maze import Maze
 
-from browser import document, html
-
 
 class Path:
     def __init__(self, current_node: Node) -> None:
@@ -18,8 +16,7 @@ class Path:
         for node in self.path:
             print(node)
 
-    def draw(self, maze: Maze) -> None:
-
+    def draw(self, maze: Maze, draw) -> None:
         points = []
 
         for i in range(len(self.path) - 1):
@@ -49,20 +46,12 @@ class Path:
 
         scale = 5
 
-        canvas = html.CANVAS(width=w * scale, height=h * scale)
-        ctx = canvas.getContext("2d")
-
         for i in range(h):
             for j in range(w):
                 if array[j][i]:
-                    ctx.fillStyle = "rgb(255,255,255)"
+                    draw(i, j)
                 else:
-                    ctx.fillStyle = "rgb(0,0,0)"
-                ctx.fillRect(i * scale, j * scale, 1 * scale, 1 * scale)
+                    draw(i, j, (0, 0, 0))
 
         for i, point in enumerate(points):
-            r, g, b = colors[i]
-            ctx.fillStyle = "rgb("+str(r)+","+str(g)+","+str(b)+")"
-            ctx.fillRect(point.x * scale, point.y * scale, 1 * scale, 1 * scale)
-
-        document["canvas"] <= canvas
+            draw(point.x, point.y, colors[i])

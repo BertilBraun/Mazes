@@ -8,7 +8,7 @@ class AStar(Solver):
     def __init__(self, path) -> None:
         super().__init__(path)
 
-    def solve(self, start: Point, end: Point) -> Path:
+    def solve(self, start: Point, end: Point, draw) -> Path:
         start_node = self[start.x, start.y]
         end_node = self[end.x, end.y]
 

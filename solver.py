@@ -73,7 +73,7 @@ class Solver:
                     top_nodes[x] = node if array[y + 1][x] > 0 else None
 
     @abc.abstractmethod
-    def solve(self, start: Point, end: Point) -> Path:
+    def solve(self, start: Point, end: Point, draw) -> Path:
         pass
 
     def __setitem__(self, item: tuple, value) -> None:

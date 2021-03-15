@@ -4,14 +4,21 @@
 <head>
     <title>Mazes on the web</title>
     <meta charset="iso-8859-1">
-    <script src="/Mazes/Brython/brython.js"></script>
-    <script src="/Mazes/Brython/brython_stdlib.js"></script>
+    <script src="Brython/brython.js"></script>
+    <script src="Brython/brython_stdlib.js"></script>
 </head>
 
 <body onLoad="brython(1)">
     <script type="text/python" src="main.py"></script>
 
+    <p id="loading">LOADING...</p>
     <div id="canvas"></div>
+
+    <h3>Click to select starting point!</h3>
+    <p>Size:</p>
+    <input type="number" name="size" id="size" value="20">
+    <button id="reset">RESET</button>
+    <p id="error"></p>
 </body>
 
 </html>
